@@ -140,8 +140,8 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **page** | **Integer** | The page index to retrieve. | [optional][default to 0] |
-| **per_page** | **Integer** | The number of entities per page to return. | [optional][default to 10] |
+| **page** | **Integer** | The page index to retrieve. | [optional] |
+| **per_page** | **Integer** | The number of entities per page to return. | [optional] |
 | **bank_guid** | **String** | Bank guid to list applications for. | [optional] |
 
 ### Return type
