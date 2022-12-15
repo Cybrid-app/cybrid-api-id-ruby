@@ -78,19 +78,19 @@ The Cybrid platform supports the use of scopes to control the level of access a 
 
 The following scopes are available on the platform and can be requested when generating either an Organization, Bank or Customer token. Generally speaking, the _Read_ scope is required to read and list resources, the _Write_ scope is required to update a resource and the _Execute_ scope is required to create a resource.
 
-| Resource               | Read scope (Token Type)                                    | Write scope (Token Type)           | Execute scope (Token Type)                      |
-|------------------------|------------------------------------------------------------|------------------------------------|-------------------------------------------------|
-| Organizations          | organizations:read (Organization)                          | organizations:write (Organization) |                                                 |
-| Banks                  | banks:read (Organization, Bank)                            | banks:write (Organization, Bank)   | banks:execute (Organization)                    |
-| Customers              | customers:read (Organization, Bank, Customer)              | customers:write (Bank, Customer)   | customers:execute (Bank)                        |
-| Accounts               | accounts:read (Organization, Bank, Customer)               |                                    | accounts:execute (Bank, Customer)               |
-| Prices                 | prices:read (Bank, Customer)                               |                                    |                                                 |
-| Quotes                 | quotes:read (Organization, Bank, Customer)                 |                                    | quotes:execute (Bank, Customer)                 |
-| Trades                 | trades:read (Organization, Bank, Customer)                 |                                    | trades:execute (Bank, Customer)                 |
-| Rewards                | rewards:read (Bank, Customer)                              |                                    | rewards:execute (Bank)                          |
-| External bank accounts | external_bank_accounts:read (Organization, Bank, Customer) |                                    | external_bank_accounts:execute (Bank, Customer) |
-| Workflows              | workflows:read (Organization, Bank, Customer)              |                                    | workflows:execute (Bank, Customer)              |
-| Transfers              | workflows:read (Organization, Bank, Customer)              |                                    | workflows:execute (Bank, Customer)              |
+| Resource               | Read scope (Token Type)                                    | Write scope (Token Type)                      | Execute scope (Token Type)                      |
+|------------------------|------------------------------------------------------------|-----------------------------------------------|-------------------------------------------------|
+| Organizations          | organizations:read (Organization)                          | organizations:write (Organization)            |                                                 |
+| Banks                  | banks:read (Organization, Bank)                            | banks:write (Organization, Bank)              | banks:execute (Organization)                    |
+| Customers              | customers:read (Organization, Bank, Customer)              | customers:write (Bank, Customer)              | customers:execute (Bank)                        |
+| Accounts               | accounts:read (Organization, Bank, Customer)               |                                               | accounts:execute (Bank, Customer)               |
+| Prices                 | prices:read (Bank, Customer)                               |                                               |                                                 |
+| Quotes                 | quotes:read (Organization, Bank, Customer)                 |                                               | quotes:execute (Bank, Customer)                 |
+| Trades                 | trades:read (Organization, Bank, Customer)                 |                                               | trades:execute (Bank, Customer)                 |
+| Rewards                | rewards:read (Bank, Customer)                              |                                               | rewards:execute (Bank)                          |
+| External bank accounts | external_bank_accounts:read (Organization, Bank, Customer) | external_bank_accounts:write (Bank, Customer) | external_bank_accounts:execute (Bank, Customer) |
+| Workflows              | workflows:read (Organization, Bank, Customer)              |                                               | workflows:execute (Bank, Customer)              |
+| Transfers              | workflows:read (Organization, Bank, Customer)              |                                               | workflows:execute (Bank, Customer)              |
 
 ## Available Endpoints
 
@@ -143,8 +143,8 @@ An `Organization` can have multiple `banks`, in either `Sandbox` or `Production`
 
 This SDK is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: v0.56.34
-- Package version: 0.56.34
+- API version: v0.57.0
+- Package version: 0.57.0
 - Build package: org.openapitools.codegen.languages.RubyClientCodegen
 
 ## Installation
@@ -160,16 +160,16 @@ gem build cybrid_api_id_ruby.gemspec
 Then either install the gem locally:
 
 ```shell
-gem install ./cybrid_api_id_ruby-0.56.34.gem
+gem install ./cybrid_api_id_ruby-0.57.0.gem
 ```
 
-(for development, run `gem install --dev ./cybrid_api_id_ruby-0.56.34.gem` to install the development dependencies)
+(for development, run `gem install --dev ./cybrid_api_id_ruby-0.57.0.gem` to install the development dependencies)
 
 or publish the gem to a gem hosting service, e.g. [RubyGems](https://rubygems.org/).
 
 Finally add this to the Gemfile:
 
-    gem 'cybrid_api_id_ruby', '~> 0.56.34'
+    gem 'cybrid_api_id_ruby', '~> 0.57.0'
 
 ### Install from Git
 
