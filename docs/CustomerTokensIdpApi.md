@@ -1,6 +1,6 @@
 # CybridApiId::CustomerTokensIdpApi
 
-All URIs are relative to *https://id.demo.cybrid.app*
+All URIs are relative to *https://id.sandbox.cybrid.app*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
