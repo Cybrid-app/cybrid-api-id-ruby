@@ -5,6 +5,7 @@ All URIs are relative to *https://id.sandbox.cybrid.app*
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
 | [**create_user**](UsersIdpApi.md#create_user) | **POST** /api/users | Create user |
+| [**get_user**](UsersIdpApi.md#get_user) | **GET** /api/users/{user_guid} | Get User |
 | [**list_user**](UsersIdpApi.md#list_user) | **GET** /api/users | List users |
 
 
@@ -77,6 +78,78 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## get_user
+
+> <UserIdpModel> get_user(user_guid)
+
+Get User
+
+Retrieves a user.  Required scope: **users:read**
+
+### Examples
+
+```ruby
+require 'time'
+require 'cybrid_api_id_ruby'
+# setup authorization
+CybridApiId.configure do |config|
+  # Configure Bearer authorization (JWT): BearerAuth
+  config.access_token = 'YOUR_BEARER_TOKEN'
+
+  # Configure OAuth2 access token for authorization: oauth2
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = CybridApiId::UsersIdpApi.new
+user_guid = 'user_guid_example' # String | Identifier for the user.
+
+begin
+  # Get User
+  result = api_instance.get_user(user_guid)
+  p result
+rescue CybridApiId::ApiError => e
+  puts "Error when calling UsersIdpApi->get_user: #{e}"
+end
+```
+
+#### Using the get_user_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<UserIdpModel>, Integer, Hash)> get_user_with_http_info(user_guid)
+
+```ruby
+begin
+  # Get User
+  data, status_code, headers = api_instance.get_user_with_http_info(user_guid)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <UserIdpModel>
+rescue CybridApiId::ApiError => e
+  puts "Error when calling UsersIdpApi->get_user_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **user_guid** | **String** | Identifier for the user. |  |
+
+### Return type
+
+[**UserIdpModel**](UserIdpModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 
