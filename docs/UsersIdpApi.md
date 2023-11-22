@@ -5,6 +5,7 @@ All URIs are relative to *https://id.sandbox.cybrid.app*
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
 | [**create_user**](UsersIdpApi.md#create_user) | **POST** /api/users | Create user |
+| [**disable_user**](UsersIdpApi.md#disable_user) | **DELETE** /api/users/{user_guid} | Disable User |
 | [**get_user**](UsersIdpApi.md#get_user) | **GET** /api/users/{user_guid} | Get User |
 | [**list_user**](UsersIdpApi.md#list_user) | **GET** /api/users | List users |
 
@@ -78,6 +79,77 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## disable_user
+
+> disable_user(user_guid)
+
+Disable User
+
+Disables a user. User is not deleted.  Required scope: **users:execute**
+
+### Examples
+
+```ruby
+require 'time'
+require 'cybrid_api_id_ruby'
+# setup authorization
+CybridApiId.configure do |config|
+  # Configure Bearer authorization (JWT): BearerAuth
+  config.access_token = 'YOUR_BEARER_TOKEN'
+
+  # Configure OAuth2 access token for authorization: oauth2
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = CybridApiId::UsersIdpApi.new
+user_guid = 'user_guid_example' # String | Identifier for the user.
+
+begin
+  # Disable User
+  api_instance.disable_user(user_guid)
+rescue CybridApiId::ApiError => e
+  puts "Error when calling UsersIdpApi->disable_user: #{e}"
+end
+```
+
+#### Using the disable_user_with_http_info variant
+
+This returns an Array which contains the response data (`nil` in this case), status code and headers.
+
+> <Array(nil, Integer, Hash)> disable_user_with_http_info(user_guid)
+
+```ruby
+begin
+  # Disable User
+  data, status_code, headers = api_instance.disable_user_with_http_info(user_guid)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => nil
+rescue CybridApiId::ApiError => e
+  puts "Error when calling UsersIdpApi->disable_user_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **user_guid** | **String** | Identifier for the user. |  |
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 
