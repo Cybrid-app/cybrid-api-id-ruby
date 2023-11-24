@@ -7,7 +7,8 @@
 | **guid** | **String** | Auto-generated unique identifier for the user. | [optional] |
 | **username** | **String** | The user&#39;s username. | [optional] |
 | **email** | **String** | The user&#39;s email address. | [optional] |
-| **created_at** | **Time** | ISO8601 datetime the application was created at. | [optional] |
+| **created_at** | **Time** | ISO8601 datetime the record was created at. | [optional] |
+| **updated_at** | **Time** | ISO8601 datetime the record was last updated at. | [optional] |
 
 ## Example
 
@@ -18,7 +19,8 @@ instance = CybridApiId::UserIdpModel.new(
   guid: null,
   username: null,
   email: null,
-  created_at: null
+  created_at: null,
+  updated_at: null
 )
 ```
 
