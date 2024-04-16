@@ -30,7 +30,7 @@ CybridApiId.configure do |config|
 end
 
 api_instance = CybridApiId::CustomerTokensIdpApi.new
-post_customer_token_idp_model = CybridApiId::PostCustomerTokenIdpModel.new({customer_guid: 'customer_guid_example', scopes: ['customers:read']}) # PostCustomerTokenIdpModel | 
+post_customer_token_idp_model = CybridApiId::PostCustomerTokenIdpModel.new({customer_guid: 'customer_guid_example', scopes: ['counterparties:read']}) # PostCustomerTokenIdpModel | 
 
 begin
   # Create customer access token
