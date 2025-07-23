@@ -8,6 +8,7 @@ All URIs are relative to *https://id.sandbox.cybrid.app*
 | [**disable_user**](UsersIdpApi.md#disable_user) | **DELETE** /api/users/{user_guid} | Disable User |
 | [**get_user**](UsersIdpApi.md#get_user) | **GET** /api/users/{user_guid} | Get User |
 | [**list_user**](UsersIdpApi.md#list_user) | **GET** /api/users | List users |
+| [**update_user**](UsersIdpApi.md#update_user) | **PATCH** /api/users/{user_guid} | Update User |
 
 
 ## create_user
@@ -300,5 +301,79 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## update_user
+
+> <UserIdpModel> update_user(user_guid, patch_user_idp_model)
+
+Update User
+
+Updates a user's allowed scopes.  Required scope: **users:write**
+
+### Examples
+
+```ruby
+require 'time'
+require 'cybrid_api_id_ruby'
+# setup authorization
+CybridApiId.configure do |config|
+  # Configure Bearer authorization (JWT): BearerAuth
+  config.access_token = 'YOUR_BEARER_TOKEN'
+
+  # Configure OAuth2 access token for authorization: oauth2
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = CybridApiId::UsersIdpApi.new
+user_guid = 'user_guid_example' # String | Identifier for the user.
+patch_user_idp_model = CybridApiId::PatchUserIdpModel.new({allowed_scopes: ['organizations:read']}) # PatchUserIdpModel | 
+
+begin
+  # Update User
+  result = api_instance.update_user(user_guid, patch_user_idp_model)
+  p result
+rescue CybridApiId::ApiError => e
+  puts "Error when calling UsersIdpApi->update_user: #{e}"
+end
+```
+
+#### Using the update_user_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<UserIdpModel>, Integer, Hash)> update_user_with_http_info(user_guid, patch_user_idp_model)
+
+```ruby
+begin
+  # Update User
+  data, status_code, headers = api_instance.update_user_with_http_info(user_guid, patch_user_idp_model)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <UserIdpModel>
+rescue CybridApiId::ApiError => e
+  puts "Error when calling UsersIdpApi->update_user_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **user_guid** | **String** | Identifier for the user. |  |
+| **patch_user_idp_model** | [**PatchUserIdpModel**](PatchUserIdpModel.md) |  |  |
+
+### Return type
+
+[**UserIdpModel**](UserIdpModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
