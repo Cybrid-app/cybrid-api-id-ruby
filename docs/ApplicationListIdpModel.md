@@ -5,9 +5,9 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **total** | **Integer** | The total number of records available. |  |
-| **page** | **Integer** | The page index. |  |
-| **per_page** | **Integer** | The number of records per page returned. |  |
-| **objects** | [**Array&lt;ApplicationIdpModel&gt;**](ApplicationIdpModel.md) | Array of applications |  |
+| **page** | **Integer** | The page index to retrieve. |  |
+| **per_page** | **Integer** | The number of entities per page to return. |  |
+| **objects** | [**Array&lt;ApplicationIdpModel&gt;**](ApplicationIdpModel.md) |  |  |
 
 ## Example
 

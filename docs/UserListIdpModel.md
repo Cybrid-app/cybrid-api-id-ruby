@@ -4,10 +4,10 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **total** | **Integer** | The total number of users available. |  |
-| **page** | **Integer** | The page index. |  |
-| **per_page** | **Integer** | The number of records per page returned. |  |
-| **objects** | [**Array&lt;UserIdpModel&gt;**](UserIdpModel.md) | Array of applications |  |
+| **total** | **Integer** | The total number of records available. |  |
+| **page** | **Integer** | The page index to retrieve. |  |
+| **per_page** | **Integer** | The number of entities per page to return. |  |
+| **objects** | [**Array&lt;UserIdpModel&gt;**](UserIdpModel.md) |  |  |
 
 ## Example
 
