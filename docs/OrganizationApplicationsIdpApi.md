@@ -6,7 +6,9 @@ All URIs are relative to *https://id.sandbox.cybrid.app*
 | ------ | ------------ | ----------- |
 | [**create_organization_application**](OrganizationApplicationsIdpApi.md#create_organization_application) | **POST** /api/organization_applications | Create organization application |
 | [**delete_organization_application**](OrganizationApplicationsIdpApi.md#delete_organization_application) | **DELETE** /api/organization_applications/{client_id} | Delete organization application |
+| [**get_organization_application**](OrganizationApplicationsIdpApi.md#get_organization_application) | **GET** /api/organization_applications/{client_id} | Get organization application |
 | [**list_organization_applications**](OrganizationApplicationsIdpApi.md#list_organization_applications) | **GET** /api/organization_applications | List organization applications |
+| [**update_organization_application**](OrganizationApplicationsIdpApi.md#update_organization_application) | **PATCH** /api/organization_applications/{client_id} | Update organization application |
 
 
 ## create_organization_application
@@ -152,6 +154,78 @@ nil (empty response body)
 - **Accept**: application/json
 
 
+## get_organization_application
+
+> <ApplicationIdpModel> get_organization_application(client_id)
+
+Get organization application
+
+Retrieves an organization application.  Required scope: **organization_applications:read**
+
+### Examples
+
+```ruby
+require 'time'
+require 'cybrid_api_id_ruby'
+# setup authorization
+CybridApiId.configure do |config|
+  # Configure Bearer authorization (JWT): BearerAuth
+  config.access_token = 'YOUR_BEARER_TOKEN'
+
+  # Configure OAuth2 access token for authorization: oauth2
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = CybridApiId::OrganizationApplicationsIdpApi.new
+client_id = 'client_id_example' # String | Identifier for the application.
+
+begin
+  # Get organization application
+  result = api_instance.get_organization_application(client_id)
+  p result
+rescue CybridApiId::ApiError => e
+  puts "Error when calling OrganizationApplicationsIdpApi->get_organization_application: #{e}"
+end
+```
+
+#### Using the get_organization_application_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<ApplicationIdpModel>, Integer, Hash)> get_organization_application_with_http_info(client_id)
+
+```ruby
+begin
+  # Get organization application
+  data, status_code, headers = api_instance.get_organization_application_with_http_info(client_id)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <ApplicationIdpModel>
+rescue CybridApiId::ApiError => e
+  puts "Error when calling OrganizationApplicationsIdpApi->get_organization_application_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **client_id** | **String** | Identifier for the application. |  |
+
+### Return type
+
+[**ApplicationIdpModel**](ApplicationIdpModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## list_organization_applications
 
 > <ApplicationListIdpModel> list_organization_applications(opts)
@@ -225,5 +299,79 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## update_organization_application
+
+> <ApplicationIdpModel> update_organization_application(client_id, patch_application_idp_model)
+
+Update organization application
+
+Updates an organization application.  Required scope: **organization_applications:write**
+
+### Examples
+
+```ruby
+require 'time'
+require 'cybrid_api_id_ruby'
+# setup authorization
+CybridApiId.configure do |config|
+  # Configure Bearer authorization (JWT): BearerAuth
+  config.access_token = 'YOUR_BEARER_TOKEN'
+
+  # Configure OAuth2 access token for authorization: oauth2
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = CybridApiId::OrganizationApplicationsIdpApi.new
+client_id = 'client_id_example' # String | Identifier for the application.
+patch_application_idp_model = CybridApiId::PatchApplicationIdpModel.new # PatchApplicationIdpModel | 
+
+begin
+  # Update organization application
+  result = api_instance.update_organization_application(client_id, patch_application_idp_model)
+  p result
+rescue CybridApiId::ApiError => e
+  puts "Error when calling OrganizationApplicationsIdpApi->update_organization_application: #{e}"
+end
+```
+
+#### Using the update_organization_application_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<ApplicationIdpModel>, Integer, Hash)> update_organization_application_with_http_info(client_id, patch_application_idp_model)
+
+```ruby
+begin
+  # Update organization application
+  data, status_code, headers = api_instance.update_organization_application_with_http_info(client_id, patch_application_idp_model)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <ApplicationIdpModel>
+rescue CybridApiId::ApiError => e
+  puts "Error when calling OrganizationApplicationsIdpApi->update_organization_application_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **client_id** | **String** | Identifier for the application. |  |
+| **patch_application_idp_model** | [**PatchApplicationIdpModel**](PatchApplicationIdpModel.md) |  |  |
+
+### Return type
+
+[**ApplicationIdpModel**](ApplicationIdpModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 

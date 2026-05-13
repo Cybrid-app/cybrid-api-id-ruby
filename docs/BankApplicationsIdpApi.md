@@ -6,7 +6,9 @@ All URIs are relative to *https://id.sandbox.cybrid.app*
 | ------ | ------------ | ----------- |
 | [**create_bank_application**](BankApplicationsIdpApi.md#create_bank_application) | **POST** /api/bank_applications | Create bank application |
 | [**delete_bank_application**](BankApplicationsIdpApi.md#delete_bank_application) | **DELETE** /api/bank_applications/{client_id} | Delete bank application |
+| [**get_bank_application**](BankApplicationsIdpApi.md#get_bank_application) | **GET** /api/bank_applications/{client_id} | Get bank application |
 | [**list_bank_applications**](BankApplicationsIdpApi.md#list_bank_applications) | **GET** /api/bank_applications | List bank applications |
+| [**update_bank_application**](BankApplicationsIdpApi.md#update_bank_application) | **PATCH** /api/bank_applications/{client_id} | Update bank application |
 
 
 ## create_bank_application
@@ -152,6 +154,78 @@ nil (empty response body)
 - **Accept**: application/json
 
 
+## get_bank_application
+
+> <ApplicationIdpModel> get_bank_application(client_id)
+
+Get bank application
+
+Retrieves a bank application.  Required scope: **bank_applications:read**
+
+### Examples
+
+```ruby
+require 'time'
+require 'cybrid_api_id_ruby'
+# setup authorization
+CybridApiId.configure do |config|
+  # Configure Bearer authorization (JWT): BearerAuth
+  config.access_token = 'YOUR_BEARER_TOKEN'
+
+  # Configure OAuth2 access token for authorization: oauth2
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = CybridApiId::BankApplicationsIdpApi.new
+client_id = 'client_id_example' # String | Identifier for the application.
+
+begin
+  # Get bank application
+  result = api_instance.get_bank_application(client_id)
+  p result
+rescue CybridApiId::ApiError => e
+  puts "Error when calling BankApplicationsIdpApi->get_bank_application: #{e}"
+end
+```
+
+#### Using the get_bank_application_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<ApplicationIdpModel>, Integer, Hash)> get_bank_application_with_http_info(client_id)
+
+```ruby
+begin
+  # Get bank application
+  data, status_code, headers = api_instance.get_bank_application_with_http_info(client_id)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <ApplicationIdpModel>
+rescue CybridApiId::ApiError => e
+  puts "Error when calling BankApplicationsIdpApi->get_bank_application_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **client_id** | **String** | Identifier for the application. |  |
+
+### Return type
+
+[**ApplicationIdpModel**](ApplicationIdpModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## list_bank_applications
 
 > <ApplicationListIdpModel> list_bank_applications(opts)
@@ -227,5 +301,79 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## update_bank_application
+
+> <ApplicationIdpModel> update_bank_application(client_id, patch_application_idp_model)
+
+Update bank application
+
+Updates a bank application.  Required scope: **bank_applications:write**
+
+### Examples
+
+```ruby
+require 'time'
+require 'cybrid_api_id_ruby'
+# setup authorization
+CybridApiId.configure do |config|
+  # Configure Bearer authorization (JWT): BearerAuth
+  config.access_token = 'YOUR_BEARER_TOKEN'
+
+  # Configure OAuth2 access token for authorization: oauth2
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = CybridApiId::BankApplicationsIdpApi.new
+client_id = 'client_id_example' # String | Identifier for the application.
+patch_application_idp_model = CybridApiId::PatchApplicationIdpModel.new # PatchApplicationIdpModel | 
+
+begin
+  # Update bank application
+  result = api_instance.update_bank_application(client_id, patch_application_idp_model)
+  p result
+rescue CybridApiId::ApiError => e
+  puts "Error when calling BankApplicationsIdpApi->update_bank_application: #{e}"
+end
+```
+
+#### Using the update_bank_application_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<ApplicationIdpModel>, Integer, Hash)> update_bank_application_with_http_info(client_id, patch_application_idp_model)
+
+```ruby
+begin
+  # Update bank application
+  data, status_code, headers = api_instance.update_bank_application_with_http_info(client_id, patch_application_idp_model)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <ApplicationIdpModel>
+rescue CybridApiId::ApiError => e
+  puts "Error when calling BankApplicationsIdpApi->update_bank_application_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **client_id** | **String** | Identifier for the application. |  |
+| **patch_application_idp_model** | [**PatchApplicationIdpModel**](PatchApplicationIdpModel.md) |  |  |
+
+### Return type
+
+[**ApplicationIdpModel**](ApplicationIdpModel.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
