@@ -34,7 +34,7 @@ CybridApiId.configure do |config|
 end
 
 api_instance = CybridApiId::BankApplicationsIdpApi.new
-post_bank_application_idp_model = CybridApiId::PostBankApplicationIdpModel.new({name: 'name_example'}) # PostBankApplicationIdpModel | 
+post_bank_application_idp_model = CybridApiId::PostBankApplicationIdpModel.new({name: 'name_example', expires_at: Time.now}) # PostBankApplicationIdpModel | 
 
 begin
   # Create bank application

@@ -34,7 +34,7 @@ CybridApiId.configure do |config|
 end
 
 api_instance = CybridApiId::OrganizationApplicationsIdpApi.new
-post_organization_application_idp_model = CybridApiId::PostOrganizationApplicationIdpModel.new({name: 'name_example'}) # PostOrganizationApplicationIdpModel | 
+post_organization_application_idp_model = CybridApiId::PostOrganizationApplicationIdpModel.new({name: 'name_example', expires_at: Time.now}) # PostOrganizationApplicationIdpModel | 
 
 begin
   # Create organization application

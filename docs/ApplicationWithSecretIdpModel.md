@@ -8,6 +8,7 @@
 | **client_id** | **String** | The OAuth2 application&#39;s client ID. |  |
 | **scopes** | **Array&lt;String&gt;** | List of the scopes granted to the OAuth2 application. |  |
 | **ip_allowlist** | **Array&lt;String&gt;** | List of IPv4 addresses or CIDR ranges that are allowlisted for API access. |  |
+| **expires_at** | **Time** | ISO8601 datetime the application expires at. Null for applications that do not expire. |  |
 | **created_at** | **Time** | ISO8601 datetime the record was created at. |  |
 | **updated_at** | **Time** | ISO8601 datetime the record was last updated at. | [optional] |
 | **secret** | **String** | The OAuth2 application&#39;s secret. |  |
@@ -22,6 +23,7 @@ instance = CybridApiId::ApplicationWithSecretIdpModel.new(
   client_id: null,
   scopes: null,
   ip_allowlist: null,
+  expires_at: null,
   created_at: null,
   updated_at: null,
   secret: null
