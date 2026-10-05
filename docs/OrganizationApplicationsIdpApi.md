@@ -106,7 +106,7 @@ CybridApiId.configure do |config|
 end
 
 api_instance = CybridApiId::OrganizationApplicationsIdpApi.new
-client_id = 'client_id_example' # String | Identifier for the application.
+client_id = 'client_id_example' # String | The application client_id or guid.
 
 begin
   # Delete organization application
@@ -138,7 +138,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **client_id** | **String** | Identifier for the application. |  |
+| **client_id** | **String** | The application client_id or guid. |  |
 
 ### Return type
 
@@ -177,7 +177,7 @@ CybridApiId.configure do |config|
 end
 
 api_instance = CybridApiId::OrganizationApplicationsIdpApi.new
-client_id = 'client_id_example' # String | Identifier for the application.
+client_id = 'client_id_example' # String | The application client_id or guid.
 
 begin
   # Get organization application
@@ -210,7 +210,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **client_id** | **String** | Identifier for the application. |  |
+| **client_id** | **String** | The application client_id or guid. |  |
 
 ### Return type
 
@@ -325,7 +325,7 @@ CybridApiId.configure do |config|
 end
 
 api_instance = CybridApiId::OrganizationApplicationsIdpApi.new
-client_id = 'client_id_example' # String | Identifier for the application.
+client_id = 'client_id_example' # String | The application client_id or guid.
 patch_application_idp_model = CybridApiId::PatchApplicationIdpModel.new # PatchApplicationIdpModel | 
 
 begin
@@ -359,7 +359,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **client_id** | **String** | Identifier for the application. |  |
+| **client_id** | **String** | The application client_id or guid. |  |
 | **patch_application_idp_model** | [**PatchApplicationIdpModel**](PatchApplicationIdpModel.md) |  |  |
 
 ### Return type

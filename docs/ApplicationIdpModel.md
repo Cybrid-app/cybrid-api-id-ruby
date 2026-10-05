@@ -5,6 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **name** | **String** | Name provided for the OAuth2 application. |  |
+| **guid** | **String** | Auto-generated unique identifier for the OAuth2 application. |  |
 | **client_id** | **String** | The OAuth2 application&#39;s client ID. |  |
 | **scopes** | **Array&lt;String&gt;** | List of the scopes granted to the OAuth2 application. |  |
 | **ip_allowlist** | **Array&lt;String&gt;** | List of IPv4 addresses or CIDR ranges that are allowlisted for API access. |  |
@@ -19,6 +20,7 @@ require 'cybrid_api_id_ruby'
 
 instance = CybridApiId::ApplicationIdpModel.new(
   name: null,
+  guid: null,
   client_id: null,
   scopes: null,
   ip_allowlist: null,
