@@ -14,27 +14,37 @@ require 'date'
 require 'time'
 
 module CybridApiId
-  # Request body for bank application creation.
-  class PostBankApplicationIdpModel
-    # Name for the bank application.
-    attr_accessor :name
+  # Request body for user authorization update.
+  class PatchAuthorizationIdpModel
+    # List of scopes that the user is allowed to request.
+    attr_accessor :allowed_scopes
 
-    # Bank guid the application is associated to.
-    attr_accessor :bank_guid
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
 
-    # ISO8601 datetime the application expires at; must be in the future.
-    attr_accessor :expires_at
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
 
-    # List of public IPv4 addresses or CIDR ranges to allowlist for API access.
-    attr_accessor :ip_allowlist
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'name' => :'name',
-        :'bank_guid' => :'bank_guid',
-        :'expires_at' => :'expires_at',
-        :'ip_allowlist' => :'ip_allowlist'
+        :'allowed_scopes' => :'allowed_scopes'
       }
     end
 
@@ -46,10 +56,7 @@ module CybridApiId
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'name' => :'String',
-        :'bank_guid' => :'String',
-        :'expires_at' => :'Time',
-        :'ip_allowlist' => :'Array<String>'
+        :'allowed_scopes' => :'Array<String>'
       }
     end
 
@@ -63,37 +70,23 @@ module CybridApiId
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `CybridApiId::PostBankApplicationIdpModel` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `CybridApiId::PatchAuthorizationIdpModel` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `CybridApiId::PostBankApplicationIdpModel`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `CybridApiId::PatchAuthorizationIdpModel`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'name')
-        self.name = attributes[:'name']
-      else
-        self.name = nil
-      end
-
-      if attributes.key?(:'bank_guid')
-        self.bank_guid = attributes[:'bank_guid']
-      end
-
-      if attributes.key?(:'expires_at')
-        self.expires_at = attributes[:'expires_at']
-      else
-        self.expires_at = nil
-      end
-
-      if attributes.key?(:'ip_allowlist')
-        if (value = attributes[:'ip_allowlist']).is_a?(Array)
-          self.ip_allowlist = value
+      if attributes.key?(:'allowed_scopes')
+        if (value = attributes[:'allowed_scopes']).is_a?(Array)
+          self.allowed_scopes = value
         end
+      else
+        self.allowed_scopes = nil
       end
     end
 
@@ -102,28 +95,12 @@ module CybridApiId
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @name.nil?
-        invalid_properties.push('invalid value for "name", name cannot be nil.')
+      if @allowed_scopes.nil?
+        invalid_properties.push('invalid value for "allowed_scopes", allowed_scopes cannot be nil.')
       end
 
-      if @name.to_s.length > 128
-        invalid_properties.push('invalid value for "name", the character length must be smaller than or equal to 128.')
-      end
-
-      if @name.to_s.length < 1
-        invalid_properties.push('invalid value for "name", the character length must be great than or equal to 1.')
-      end
-
-      if !@bank_guid.nil? && @bank_guid.to_s.length > 32
-        invalid_properties.push('invalid value for "bank_guid", the character length must be smaller than or equal to 32.')
-      end
-
-      if !@bank_guid.nil? && @bank_guid.to_s.length < 32
-        invalid_properties.push('invalid value for "bank_guid", the character length must be great than or equal to 32.')
-      end
-
-      if @expires_at.nil?
-        invalid_properties.push('invalid value for "expires_at", expires_at cannot be nil.')
+      if @allowed_scopes.length < 1
+        invalid_properties.push('invalid value for "allowed_scopes", number of items must be greater than or equal to 1.')
       end
 
       invalid_properties
@@ -133,49 +110,9 @@ module CybridApiId
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @name.nil?
-      return false if @name.to_s.length > 128
-      return false if @name.to_s.length < 1
-      return false if !@bank_guid.nil? && @bank_guid.to_s.length > 32
-      return false if !@bank_guid.nil? && @bank_guid.to_s.length < 32
-      return false if @expires_at.nil?
+      return false if @allowed_scopes.nil?
+      return false if @allowed_scopes.length < 1
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] name Value to be assigned
-    def name=(name)
-      if name.nil?
-        fail ArgumentError, 'name cannot be nil'
-      end
-
-      if name.to_s.length > 128
-        fail ArgumentError, 'invalid value for "name", the character length must be smaller than or equal to 128.'
-      end
-
-      if name.to_s.length < 1
-        fail ArgumentError, 'invalid value for "name", the character length must be great than or equal to 1.'
-      end
-
-      @name = name
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] bank_guid Value to be assigned
-    def bank_guid=(bank_guid)
-      if bank_guid.nil?
-        fail ArgumentError, 'bank_guid cannot be nil'
-      end
-
-      if bank_guid.to_s.length > 32
-        fail ArgumentError, 'invalid value for "bank_guid", the character length must be smaller than or equal to 32.'
-      end
-
-      if bank_guid.to_s.length < 32
-        fail ArgumentError, 'invalid value for "bank_guid", the character length must be great than or equal to 32.'
-      end
-
-      @bank_guid = bank_guid
     end
 
     # Checks equality by comparing each attribute.
@@ -183,10 +120,7 @@ module CybridApiId
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          name == o.name &&
-          bank_guid == o.bank_guid &&
-          expires_at == o.expires_at &&
-          ip_allowlist == o.ip_allowlist
+          allowed_scopes == o.allowed_scopes
     end
 
     # @see the `==` method
@@ -198,7 +132,7 @@ module CybridApiId
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [name, bank_guid, expires_at, ip_allowlist].hash
+      [allowed_scopes].hash
     end
 
     # Builds the object from hash

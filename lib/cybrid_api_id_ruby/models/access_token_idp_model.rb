@@ -14,27 +14,42 @@ require 'date'
 require 'time'
 
 module CybridApiId
-  # Request body for bank application creation.
-  class PostBankApplicationIdpModel
-    # Name for the bank application.
-    attr_accessor :name
+  class AccessTokenIdpModel
+    # Identifier of the access token.
+    attr_accessor :id
 
-    # Bank guid the application is associated to.
-    attr_accessor :bank_guid
+    # Client ID of the application the token was issued to.
+    attr_accessor :application_client_id
 
-    # ISO8601 datetime the application expires at; must be in the future.
-    attr_accessor :expires_at
+    # Guid of the organization, bank or customer the issuing application belongs to.
+    attr_accessor :application_guid
 
-    # List of public IPv4 addresses or CIDR ranges to allowlist for API access.
-    attr_accessor :ip_allowlist
+    # Type of the resource owner: user, or application for customer tokens owned by a bank application.
+    attr_accessor :resource_owner_type
+
+    # Guid of the user, or of the bank that owns the owning application.
+    attr_accessor :resource_owner_guid
+
+    # ISO8601 datetime the token was created at.
+    attr_accessor :created_at
+
+    # Lifetime of the token in seconds. Null for tokens that do not expire.
+    attr_accessor :expires_in
+
+    # ISO8601 datetime the token was revoked at. Null for tokens that are not revoked.
+    attr_accessor :revoked_at
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'name' => :'name',
-        :'bank_guid' => :'bank_guid',
-        :'expires_at' => :'expires_at',
-        :'ip_allowlist' => :'ip_allowlist'
+        :'id' => :'id',
+        :'application_client_id' => :'application_client_id',
+        :'application_guid' => :'application_guid',
+        :'resource_owner_type' => :'resource_owner_type',
+        :'resource_owner_guid' => :'resource_owner_guid',
+        :'created_at' => :'created_at',
+        :'expires_in' => :'expires_in',
+        :'revoked_at' => :'revoked_at'
       }
     end
 
@@ -46,16 +61,25 @@ module CybridApiId
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'name' => :'String',
-        :'bank_guid' => :'String',
-        :'expires_at' => :'Time',
-        :'ip_allowlist' => :'Array<String>'
+        :'id' => :'Integer',
+        :'application_client_id' => :'String',
+        :'application_guid' => :'String',
+        :'resource_owner_type' => :'String',
+        :'resource_owner_guid' => :'String',
+        :'created_at' => :'Time',
+        :'expires_in' => :'Integer',
+        :'revoked_at' => :'Time'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'application_guid',
+        :'resource_owner_type',
+        :'resource_owner_guid',
+        :'expires_in',
+        :'revoked_at'
       ])
     end
 
@@ -63,37 +87,63 @@ module CybridApiId
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `CybridApiId::PostBankApplicationIdpModel` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `CybridApiId::AccessTokenIdpModel` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `CybridApiId::PostBankApplicationIdpModel`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `CybridApiId::AccessTokenIdpModel`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'name')
-        self.name = attributes[:'name']
+      if attributes.key?(:'id')
+        self.id = attributes[:'id']
       else
-        self.name = nil
+        self.id = nil
       end
 
-      if attributes.key?(:'bank_guid')
-        self.bank_guid = attributes[:'bank_guid']
-      end
-
-      if attributes.key?(:'expires_at')
-        self.expires_at = attributes[:'expires_at']
+      if attributes.key?(:'application_client_id')
+        self.application_client_id = attributes[:'application_client_id']
       else
-        self.expires_at = nil
+        self.application_client_id = nil
       end
 
-      if attributes.key?(:'ip_allowlist')
-        if (value = attributes[:'ip_allowlist']).is_a?(Array)
-          self.ip_allowlist = value
-        end
+      if attributes.key?(:'application_guid')
+        self.application_guid = attributes[:'application_guid']
+      else
+        self.application_guid = nil
+      end
+
+      if attributes.key?(:'resource_owner_type')
+        self.resource_owner_type = attributes[:'resource_owner_type']
+      else
+        self.resource_owner_type = nil
+      end
+
+      if attributes.key?(:'resource_owner_guid')
+        self.resource_owner_guid = attributes[:'resource_owner_guid']
+      else
+        self.resource_owner_guid = nil
+      end
+
+      if attributes.key?(:'created_at')
+        self.created_at = attributes[:'created_at']
+      else
+        self.created_at = nil
+      end
+
+      if attributes.key?(:'expires_in')
+        self.expires_in = attributes[:'expires_in']
+      else
+        self.expires_in = nil
+      end
+
+      if attributes.key?(:'revoked_at')
+        self.revoked_at = attributes[:'revoked_at']
+      else
+        self.revoked_at = nil
       end
     end
 
@@ -102,28 +152,16 @@ module CybridApiId
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @name.nil?
-        invalid_properties.push('invalid value for "name", name cannot be nil.')
+      if @id.nil?
+        invalid_properties.push('invalid value for "id", id cannot be nil.')
       end
 
-      if @name.to_s.length > 128
-        invalid_properties.push('invalid value for "name", the character length must be smaller than or equal to 128.')
+      if @application_client_id.nil?
+        invalid_properties.push('invalid value for "application_client_id", application_client_id cannot be nil.')
       end
 
-      if @name.to_s.length < 1
-        invalid_properties.push('invalid value for "name", the character length must be great than or equal to 1.')
-      end
-
-      if !@bank_guid.nil? && @bank_guid.to_s.length > 32
-        invalid_properties.push('invalid value for "bank_guid", the character length must be smaller than or equal to 32.')
-      end
-
-      if !@bank_guid.nil? && @bank_guid.to_s.length < 32
-        invalid_properties.push('invalid value for "bank_guid", the character length must be great than or equal to 32.')
-      end
-
-      if @expires_at.nil?
-        invalid_properties.push('invalid value for "expires_at", expires_at cannot be nil.')
+      if @created_at.nil?
+        invalid_properties.push('invalid value for "created_at", created_at cannot be nil.')
       end
 
       invalid_properties
@@ -133,49 +171,10 @@ module CybridApiId
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @name.nil?
-      return false if @name.to_s.length > 128
-      return false if @name.to_s.length < 1
-      return false if !@bank_guid.nil? && @bank_guid.to_s.length > 32
-      return false if !@bank_guid.nil? && @bank_guid.to_s.length < 32
-      return false if @expires_at.nil?
+      return false if @id.nil?
+      return false if @application_client_id.nil?
+      return false if @created_at.nil?
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] name Value to be assigned
-    def name=(name)
-      if name.nil?
-        fail ArgumentError, 'name cannot be nil'
-      end
-
-      if name.to_s.length > 128
-        fail ArgumentError, 'invalid value for "name", the character length must be smaller than or equal to 128.'
-      end
-
-      if name.to_s.length < 1
-        fail ArgumentError, 'invalid value for "name", the character length must be great than or equal to 1.'
-      end
-
-      @name = name
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] bank_guid Value to be assigned
-    def bank_guid=(bank_guid)
-      if bank_guid.nil?
-        fail ArgumentError, 'bank_guid cannot be nil'
-      end
-
-      if bank_guid.to_s.length > 32
-        fail ArgumentError, 'invalid value for "bank_guid", the character length must be smaller than or equal to 32.'
-      end
-
-      if bank_guid.to_s.length < 32
-        fail ArgumentError, 'invalid value for "bank_guid", the character length must be great than or equal to 32.'
-      end
-
-      @bank_guid = bank_guid
     end
 
     # Checks equality by comparing each attribute.
@@ -183,10 +182,14 @@ module CybridApiId
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          name == o.name &&
-          bank_guid == o.bank_guid &&
-          expires_at == o.expires_at &&
-          ip_allowlist == o.ip_allowlist
+          id == o.id &&
+          application_client_id == o.application_client_id &&
+          application_guid == o.application_guid &&
+          resource_owner_type == o.resource_owner_type &&
+          resource_owner_guid == o.resource_owner_guid &&
+          created_at == o.created_at &&
+          expires_in == o.expires_in &&
+          revoked_at == o.revoked_at
     end
 
     # @see the `==` method
@@ -198,7 +201,7 @@ module CybridApiId
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [name, bank_guid, expires_at, ip_allowlist].hash
+      [id, application_client_id, application_guid, resource_owner_type, resource_owner_guid, created_at, expires_in, revoked_at].hash
     end
 
     # Builds the object from hash
