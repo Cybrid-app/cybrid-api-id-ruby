@@ -252,7 +252,7 @@ api_instance = CybridApiId::BankApplicationsIdpApi.new
 opts = {
   page: 56, # Integer | The page index to retrieve.
   per_page: 56, # Integer | The number of entities per page to return.
-  bank_guid: 'bank_guid_example' # String | Bank guid to list applications for.
+  bank_guid: 'bank_guid_example' # String | Bank guid to list applications for; organization tokens only, omitted lists all of its banks.
 }
 
 begin
@@ -288,7 +288,7 @@ end
 | ---- | ---- | ----------- | ----- |
 | **page** | **Integer** | The page index to retrieve. | [optional] |
 | **per_page** | **Integer** | The number of entities per page to return. | [optional] |
-| **bank_guid** | **String** | Bank guid to list applications for. | [optional] |
+| **bank_guid** | **String** | Bank guid to list applications for; organization tokens only, omitted lists all of its banks. | [optional] |
 
 ### Return type
 
