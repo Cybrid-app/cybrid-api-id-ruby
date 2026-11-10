@@ -17,7 +17,7 @@ All URIs are relative to *https://id.sandbox.cybrid.app*
 
 Create user
 
-Creates a user.  
+Creates a user.  Required scope: **users:execute**
 
 ### Examples
 

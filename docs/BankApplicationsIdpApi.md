@@ -89,7 +89,7 @@ end
 
 Delete bank application
 
-Deletes an application.Required scope: **bank_applications:execute**
+Deletes an application.  Required scope: **bank_applications:execute**
 
 ### Examples
 
